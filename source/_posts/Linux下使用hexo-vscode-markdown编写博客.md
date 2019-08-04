@@ -1,0 +1,229 @@
+---
+title: Linux下使用hexo+vscode+markdown编写博客
+date: 2019-08-04 18:46:34
+tags: linux
+---
+
+## hexo
+
+### 安装nodejs和git
+
+*   Windows到[官网](http://nodejs.cn/download/)下载安装包
+*   linux安装nodejs：
+
+```shell
+# linux安装nodejs
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt install nodejs
+
+# npm换淘宝源
+sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+### 安装hexo
+
+```shell
+sudo cnpm install -g hexo-cli
+```
+
+### 配置hexo
+
+```shell
+# 初始化一个目录
+hexo init blog
+cd blog
+cnpm install
+
+# 到hexo主题网站选择一个喜欢的主题，我这里选的是aircloud，把主题clone到themes文件夹
+git clone https://github.com/aircloud/hexo-theme-aircloud.git themes/aircloud
+```
+
+*   配置_config.yaml可以参考以下设置
+
+[官方Demo](https://github.com/aircloud/hexo-aircloud-blog/blob/master/_config.yml)
+
+在文件最后设置需要同步的仓库，可以设置多个：
+```yml
+deploy:
+    type: git
+    repo:
+        github: your github repo url
+        gitee: your gitee repo url
+```
+
+*   搜索功能设置
+
+```shell
+# 要用搜索功能需要安装下列插件
+npm install hexo-generator-search --save
+```
+
+*   标签和关于页面设置
+
+如果是新项目，默认是没有`标签`页面和`关于`页面的，需要在`source`文件夹下建立`tags`文件夹和`about`文件夹。
+
+其中`tags`文件夹中新建`index.md`并写入：
+
+```markdown
+---
+layout: "tags"
+title: "Tags"
+---
+```
+
+`about`文件夹下`index.md`为一篇支持 markdown 格式的文件，需要在开头添加：
+
+```mark
+---
+layout: "about"
+title: "About"
+date: 2016-04-21 04:48:33
+comments: true
+---
+```
+
+*   favicon的配置
+
+项目的 favicon 默认在你的博客根目录的 `/source/img` 下面，在 `/source/img` 下面添加 favicon.ico 即可，不要添加在主题文件夹内。
+
+### 使用hexo
+
+```shell
+# 新建文章
+hexo new filename	# 它会在source/_posts文件夹创建一个新的markdown文件，在这里面写文章就好了
+
+# 清空缓存，每次生成前最好执行一下
+hexo clean
+
+# 生成静态文件
+hexo g
+
+# 启动本地服务器，每次发布前可以在本地看一下效果
+hexo s
+
+# 发布到远程仓库前，需要安装以下插件
+cnpm install hexo-deployer-git --save
+
+# 发布到远程仓库
+hexo d
+```
+
+### 设置github
+
+*   注册github账号
+*   创建一个username.github.io的仓库
+*   创建sshkey
+
+```shell
+ssh-keygen -t rsa -C 'your email'
+# 创建好后到家目录下的.ssh目录找到id_rsa.pub复制里面的公钥，然后到github里面添加sshkey，就可以不需要密码上传了
+```
+
+*   在github设置里添加自己的sshkey
+*   绑定自己的域名
+
+发布好之后就可以通过*https://username.github.io*访问了，但是很多人希望绑定自己的域名，到本地的blog/source文件夹下创建CNAME文件，里面写上需要绑定的域名。发布一下，然后到域名服务商设置CNAME，就可以使用自己的域名访问了。
+
+### 设置gitee
+
+*   注册gitee账号
+*   创建一个和自己名字相同的仓库
+*   发布后，进入仓库，点击服务-pages就可以设置好博客了
+* gitee和github有这样几个区别
+  * gitee访问速度快，github比较慢
+  * gitee每次发布都需要到pages页面下更新，github不需要
+  * gitee不能绑定自己的域名，github可以
+* gitee有一个gitee pages Pro可以解决它的所有问题，但是99/年
+
+## markdown
+
+markdown是个好东西，Linux上优秀的markdown编辑器也不少，比如typora就有Linux版本的，但是在我的电脑上好像有点bug，无法右键打开文件，所以我就选择了vscode。
+我在vscode上安装的插件主要有:
+* Markdown All in One(集成了markdown的一些功能)
+* Markdown Preview Enhanced(预览markdown文件)
+* Paste Image(自定义粘贴图片的链接的)
+* One Dark Pro(主题，好看)
+* Typewriter Scroll Mode(当你打字的时候，自动向上滚动，保证你的光标在屏幕正中央)
+* Power Mode(打字的时候有特效,好看)
+
+编写markdown文件最麻烦的还是图片的插入，最好的解决方案就是图床，Windows下有一款很好用的图床软件叫Picgo，在Linux下也有，但是里面提供的图床真正稳定好用的只有github图床，但是github图床访问又太慢了，所以我就放弃了使用Picgo。
+
+其实只要是可以使用git的代码托管网站都可以作为我们的图床，它们的图片产生的外链前面都是一样的，只有文件名不同，我们只需要使用*Paste Image*插件将图片保存到电脑里的同一个目录，然后设置好图片链接的格式，最后将目录里的图片全都push到远程仓库就可以访问了。
+
+这样的好处是本地也会保存有一份图片副本,如果你的远程仓库挂了,图片也不会丢失,你可以寻找其他的替代方案,到时候批量把链接改掉就可以直接访问了.
+
+### Paste Image 设置
+
+先说Paste Image的设置，点击vscode左下角的小齿轮,选择设置-扩展-Paste Image Configuration, 需要更改的只有两项:
+* Paste Image: Insert Pattern(粘贴的链接格式,your_url的获取方法见本地仓库设置)
+    ${imageSyntaxPrefix}your_url${imageFileName}${imageSyntaxSuffix}
+* Paste Image: Path(图片在本地保存的绝对路径)
+
+这样你每次复制图片之后,使用ctrl+alt+v粘贴到vscode的时候,图片将自动保存到你设置的文件夹里,链接格式也已经帮你转换好了.
+
+### git设置
+
+这时候图片还在本地文件夹保存着,但是链接是远程仓库的链接,还是访问不了图片的,现在就是要把图片文件夹同步到远程仓库.
+
+这里远程仓库我使用的是国内的coding,本来想用gitee的,但是gitee的访问好像有点问题,所以只好用coding了.
+
+#### 远程仓库设置
+
+1. 在coding注册登录
+2. 在coding创建一个公开的仓库
+3. 将sshkey添加到coding设置里
+4. 复制仓库的链接备用
+
+#### 本地仓库设置
+
+1. 到上面Paste Image里面设置的文件夹路径下打开终端,执行以下命令.
+```shell
+# 初始化仓库
+git init
+
+# 与远程仓库关联
+git remote add origin your-repo-url(这就是上面复制的仓库链接)
+
+# 拉取远程仓库的内容
+git pull origin master
+
+# 在文件夹放一个测试图片,将本地仓库的内容推送到远程仓库
+git push --set-upstream origin master
+
+# 以后每次上传时候的三部曲
+git add .
+git commit -m 'update'
+git push
+```
+
+现在图片已经上传到远程仓库了,现在到远程仓库点击那张图片,点击右上角的原始数据,这个时候浏览器上地址栏的链接就是这张图片的外链了,这个链接除了文件名之外的部分就是上面要设置的*Paste Image: Insert Pattern(粘贴的链接格式)*中的*your_url*的部分.
+
+#### 自动上传脚本
+
+到现在为止,在markdown中添加图片的步骤就是:
+1. 复制图片
+2. 使用ctrl+alt+v粘贴链接到vscode
+3. 使用上传三部曲,上传图片
+
+但是每次都要打开终端,进入那个目录,执行三条命令进行上传,实在是太麻烦了,所以我自己又写了一个脚本,自动上传图片.我使用的是Python,需要依赖gitpython库.
+
+```python
+#! /usr/bin/python3
+
+import git
+
+pullPath = "你的图片文件夹的绝对路径"
+
+repo = git.Repo(pullPath)
+remote = repo.remote(name="origin")
+
+def autoPull():
+    repo.git.add(".")
+    repo.git.commit(m="update")
+    remote.push()
+
+if __name__ == "__main__":
+    autoPull()
+```
+
+授予此脚本执行权限,然后把它绑定到一个快捷键,然后每次就可以直接按一下快捷键自动上传了.
