@@ -146,7 +146,7 @@ markdown是个好东西，Linux上优秀的markdown编辑器也不少，比如ty
 * Typewriter Scroll Mode(当你打字的时候，自动向上滚动，保证你的光标在屏幕正中央)
 * Power Mode(打字的时候有特效,好看)
 
-编写markdown文件最麻烦的还是图片的插入，最好的解决方案就是图床，Windows下有一款很好用的图床软件叫Picgo，在Linux下也有，但是里面提供的图床真正稳定好用的只有github图床，但是github图床访问又太慢了，所以我就放弃了使用Picgo。
+编写markdown文件最麻烦的还是图片的插入，最好的解决方案就是图床，Windows下有一款很好用的图床软件叫Picgo，在Linux下也有，但是里面提供的图床真正稳定免费的只有github图床，但是github图床访问又太慢了，所以我就放弃了使用Picgo。
 
 其实只要是可以使用git的代码托管网站都可以作为我们的图床，它们的图片产生的外链前面都是一样的，只有文件名不同，我们只需要使用*Paste Image*插件将图片保存到电脑里的同一个目录，然后设置好图片链接的格式，最后将目录里的图片全都push到远程仓库就可以访问了。
 
@@ -165,13 +165,13 @@ markdown是个好东西，Linux上优秀的markdown编辑器也不少，比如ty
 
 这时候图片还在本地文件夹保存着,但是链接是远程仓库的链接,还是访问不了图片的,现在就是要把图片文件夹同步到远程仓库.
 
-这里远程仓库我使用的是国内的coding,本来想用gitee的,但是gitee的访问好像有点问题,所以只好用coding了.
+这里远程仓库我使用的是国内的coding,本来想用gitee的,但是gitee的访问好像有点问题,所以只好用coding了.我在使用gitee的时候,本地的预览无法显示出图片,但是直接将链接粘贴到浏览器是可以访问的,将文章发布到博客之后,我在gitee和github都部署了博客,结果gitee的无法显示出图片,github的可以,Interesting!
 
 #### 远程仓库设置
 
 1. 在coding注册登录
 2. 在coding创建一个公开的仓库
-3. 将sshkey添加到coding设置里
+3. 将sshkey公钥添加到coding设置里
 4. 复制仓库的链接备用
 
 #### 本地仓库设置
@@ -187,7 +187,7 @@ git remote add origin your-repo-url(这就是上面复制的仓库链接)
 # 拉取远程仓库的内容
 git pull origin master
 
-# 在文件夹放一个测试图片,将本地仓库的内容推送到远程仓库
+# 在文件夹放一个测试图片,将本地仓库的内容推送到远程仓库并绑定
 git push --set-upstream origin master
 
 # 以后每次上传时候的三部曲
