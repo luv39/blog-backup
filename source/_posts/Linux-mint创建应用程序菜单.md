@@ -21,3 +21,4 @@ Name=应用程序名称
 Comment="Android Development IDE(这个其实可以省略)"
 Icon=应用程序图标所在路径/android-studio/bin/idea.png
 ```
+
