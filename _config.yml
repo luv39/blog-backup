@@ -10,13 +10,13 @@ keywords:
 author: 姚志金
 language: zh
 timezone:
-email: tom_z_yao@qq.com
+email: pi_sender@163.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.yaozhijin.top
+url: https://www.yaozhijin.top
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title.html
 permalink_defaults:
 
 
@@ -134,6 +134,8 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: aircloud
 
+mathjax:
+	enable: true
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -141,3 +143,4 @@ deploy:
   repository:
     github: git@github.com:luv39/luv39.github.io.git,master
     gitee: git@gitee.com:yaozhijin/yaozhijin.git,master
+    coding: git@e.coding.net:yaozhijin/yaozhijin.git
