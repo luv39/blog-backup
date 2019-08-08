@@ -142,5 +142,4 @@ deploy:
   type: git
   repository:
     github: git@github.com:luv39/luv39.github.io.git,master
-    gitee: git@gitee.com:yaozhijin/yaozhijin.git,master
     coding: git@e.coding.net:yaozhijin/yaozhijin.git
