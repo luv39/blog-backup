@@ -140,7 +140,7 @@ markdown是个好东西，Linux上优秀的markdown编辑器也不少，比如ty
 
 先说Paste Image的设置，点击vscode左下角的小齿轮,选择设置-扩展-Paste Image Configuration, 需要更改的只有两项:
 * Paste Image: Insert Pattern(粘贴的链接格式,your_url的获取方法见本地仓库设置)
-    ${imageSyntaxPrefix}your_url${imageFileName}${imageSyntaxSuffix}
+    \${imageSyntaxPrefix}your_url\${imageFileName}\${imageSyntaxSuffix}
 * Paste Image: Path(图片在本地保存的绝对路径)
 
 这样你每次复制图片之后,使用ctrl+alt+v粘贴到vscode的时候,图片将自动保存到你设置的文件夹里,链接格式也已经帮你转换好了.
@@ -196,18 +196,18 @@ git push
 
 import git
 
-pullPath = "你的图片文件夹的绝对路径"
+pushPath = "你的图片文件夹的绝对路径"
 
-repo = git.Repo(pullPath)
-remote = repo.remote(name="origin")
+repo = git.Repo(pushPath)
+origin = repo.remote(name="origin")
 
-def autoPull():
+def autoPush():
     repo.git.add(".")
     repo.git.commit(m="update")
-    remote.push()
+    origin.push()
 
 if __name__ == "__main__":
-    autoPull()
+    autoPush()
 ```
 
 授予此脚本执行权限,然后把它绑定到一个快捷键,然后每次就可以直接按一下快捷键自动上传了.
