@@ -30,7 +30,7 @@ set envelope_from=yes
 ```
 
 然后新建日志文件`touch ~/.msmtp.log`
-新建mstp配置文件`vim ~/.msmtprc`，写入以下内容
+新建msmtp配置文件`vim ~/.msmtprc`，写入以下内容
 
 ```shell
 account	default
