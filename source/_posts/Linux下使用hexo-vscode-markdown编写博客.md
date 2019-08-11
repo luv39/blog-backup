@@ -11,7 +11,7 @@ tags: linux
 *   Windows到[官网](http://nodejs.cn/download/)下载安装包
 *   linux安装nodejs：
 
-```shell
+```sh
 # linux安装nodejs
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install nodejs
@@ -22,13 +22,13 @@ sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #### 安装hexo
 
-```shell
+```sh
 sudo cnpm install -g hexo-cli
 ```
 
 #### 配置hexo
 
-```shell
+```sh
 # 初始化一个目录
 hexo init blog
 cd blog
@@ -58,7 +58,7 @@ deploy:
 
 #### 使用hexo
 
-```shell
+```sh
 # 新建文章
 hexo new filename	# 它会在source/_posts文件夹创建一个新的markdown文件，在这里面写文章就好了
 
@@ -84,7 +84,7 @@ hexo d
 *   创建一个username.github.io的仓库
 *   创建sshkey
 
-```shell
+```sh
 ssh-keygen -t rsa -C 'your email'
 # 创建好后到家目录下的.ssh目录找到id_rsa.pub复制里面的公钥，然后到github里面添加sshkey，就可以不需要密码上传了
 ```
@@ -128,7 +128,7 @@ markdown是个好东西，Linux上优秀的markdown编辑器也不少，比如ty
 * Typewriter Scroll Mode(当你打字的时候，自动向上滚动，保证你的光标在屏幕正中央)
 * Power Mode(打字的时候有特效,好看)
 
-![](https://yaozhijin.coding.net/p/img/git/raw/master/demo-presets-particles.gif)
+![](https://yaozhijin.coding.net/p/img/git/raw/master/gif/demo-presets-particles.gif)
 
 编写markdown文件最麻烦的还是图片的插入，最好的解决方案就是图床，Windows下有一款很好用的图床软件叫Picgo，在Linux下也有，但是里面提供的图床真正稳定免费的只有github图床，但是github图床访问又太慢了，所以我就放弃了使用Picgo。
 
@@ -161,7 +161,8 @@ markdown是个好东西，Linux上优秀的markdown编辑器也不少，比如ty
 ##### 本地仓库设置
 
 1. 到上面Paste Image里面设置的文件夹路径下打开终端,执行以下命令.
-```shell
+
+```sh
 # 初始化仓库
 git init
 
