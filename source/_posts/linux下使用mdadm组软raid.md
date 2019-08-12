@@ -99,7 +99,7 @@ sudo mdadm -D /dev/md127
 使用`sudo fdisk -l`可以看到，我们的新磁盘已经被认到了，现在要拷贝正常硬盘上的分区信息到新的硬盘。
 
 ```sh
-sudo sfdisk -d /dev/sdb | sudo fdisk -f /dev/sde
+sudo sfdisk -d /dev/sdb | sudo sfdisk -f /dev/sde
 
 # 让内核重载分区表
 sudo partprobe /dev/sde
