@@ -27,6 +27,13 @@ $ sudo passwd ftpuser
 ```
 # 需要更改的选项如下
 
-
-
+listen=YES
+listen_ipv6=NO
+write_enable=YES
+xferlog_file=/var/log/vsftpd.log
+pam_service_name=ftp
+ssl_enable=YES
+utf8_filesystem=YES
 ```
+
+现在你就可以使用filezilla登录了，如果你使用文件管理器或浏览器登录不上，那就把ssl_enable改为NO

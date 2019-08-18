@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 茄子的博客
+title: 纸巾的博客
 subtitle: 间歇性壮志凌云, 持续性混吃等死
-description: "茄子的博客"
+description: "纸巾的博客"
 keywords:
-author: 茄子1301
+author: 纸巾要么
 language: zh
 timezone:
 email: pi_sender@163.com
@@ -25,7 +25,7 @@ permalink_defaults:
 
 # Site settings
 # 网站综合内容设置：
-SEOTitle: 茄子的博客
+SEOTitle: 纸巾的博客
 # email: onlythen@yeah.net
 # description: "聂小涛的博客"
 # keyword: "腾讯"
